@@ -1,0 +1,94 @@
+@import './vars'
+
+// media
+// Large devices (desktops, less than 1200px)
+@media screen and (max-width: 1199.98px)
+    .container
+        width: 960px
+    
+// Medium devices (tablets, less than 992px)
+@media screen and (max-width: 991.98px)
+    .container
+        width: 720px
+
+// Small devices (landscape phones, less than 768px)
+@media screen and (max-width: 767.98px)
+    .container
+        width: 540px
+
+// X-Small devices (portrait phones, less than 576px)
+@media screen and (max-width: 575.98px)
+    .container
+        width: 420px
+
+
+@media screen and (max-width: 500px)
+    .container
+        width: 360px
+    .modal
+        &__content
+            width: 380px
+    .form
+        &__required
+            font-size: 0.6rem
+        &__validated
+            .multiselect
+                width: 300px
+        &__btn-group
+            display: flex
+        &__step
+            width: 360px // 
+        &__list
+            width: 400px //
+        &__item
+            width: 300px //
+            font-size: 0.8rem //
+            input[type=text], input[type=tel]
+                width: 170px //
+        &__radio
+            &-group
+                width: 170px //
+
+
+@media screen and (max-width: 400px)
+    .container
+        width: 300px
+    .main
+        h1
+            margin-top: 20px
+    .main__heading 
+        p
+            font-size: 0.8rem
+            line-height: 1.2
+    .modal
+        &__header
+            font-size: 1rem
+        &__content
+            width: 300px
+            font-size: 0.8rem
+    .form
+        &__required
+            font-size: 0.6rem
+        &__validated
+            .multiselect
+                width: 280px
+        &__btn-group
+            display: flex
+        &__step
+            width: 300px // 
+        &__list
+            width: 400px //
+        &__checkbox
+            justify-content: space-between
+            width: 180px !important
+        &__item
+            width: 280px //
+            font-size: 0.7rem //
+            input[type=text], input[type=tel]
+                width: 160px //
+                font-size: 0.7rem
+        &__radio
+            &-group
+                width: 160px //
+
+
