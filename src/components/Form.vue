@@ -139,7 +139,7 @@
                             </div>
 
                             <div class="form__item">
-                                <p class="form__required">*Заполнить необходимо</p>
+                                <p class="form__required">{{requiredText}}</p>
                             </div>
 
 
@@ -217,7 +217,7 @@
 
                     
                         <div class="form__item">
-                            <p class="form__required">*Заполнить необходимо</p>
+                            <p class="form__required">{{requiredText}}</p>
                         </div>
 
                         <div class="form__btn-group">
@@ -287,7 +287,7 @@
 
                             
                             <div class="form__item">
-                                <p class="form__required">*Заполнить необходимо</p>
+                                <p class="form__required">{{requiredText}}</p>
                             </div>
 
 
