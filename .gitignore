@@ -1,5 +1,6 @@
 .DS_Store
 node_modules
+gh-deploy.sh
 
 
 # local env files
