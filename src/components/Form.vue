@@ -61,14 +61,14 @@
                                 <div class="form__item">
                                     <label for="birthday">Дата рождения*</label>
                                     <input 
-                                        type="text" 
+                                        type="date" 
                                         id="birthday" 
-                                        placeholder="26.12.1991" 
                                         v-model="personalData.birthday"
                                         @blur="$v.personalData.birthday.$touch()"
-                                        @input="dateMask()"
                                         :class="{'invalid': $v.personalData.birthday.$error}"  
-                                        >
+                                        min="1900-01-01" 
+                                        max="2021-01-01"
+                                    >
                                 </div>
                                 <span class="invalid-feedback" v-if="$v.personalData.birthday.$error">{{ requiredText }}</span>
                             </div>       
@@ -273,13 +273,12 @@
                                 <div class="form__item">
                                     <label for="obtain">Дата выдачи*</label>
                                     <input 
-                                        type="text" 
+                                        type="date" 
                                         id="obtain" 
-                                        placeholder="27.12.1991" 
                                         v-model="personalData.obtainingDate"
                                         @blur="$v.personalData.obtainingDate.$touch()"
-                                        @input="dateMask"
                                         :class="{'invalid': $v.personalData.obtainingDate.$error}"
+                                        min="1900-01-01" 
                                     >
                                 </div>
                                 <span class="invalid-feedback" v-if="$v.personalData.obtainingDate.$error">{{ requiredText }}</span>
@@ -467,7 +466,7 @@ export default {
         serialMask() {
             this.personalData.serial = this.personalData.serial.replace(/\D+/gi, '')
             const serial = this.personalData.serial.match(/\d{4}/g)
-            this.personalData.serial = this.personalData.serial.replace(/\d{4,}/g, serial).replace(/((\d{2})(\d{2}))/g, `$2 $3`)
+            this.personalData.serial = this.personalData.serial.replace(/\d{4,}/g, serial)
         },
         phoneMask() {
             this.personalData.phone = this.personalData.phone.replace(/\D+/gi, '')
@@ -492,36 +491,6 @@ export default {
             this.personalData.country     = this.personalData.country.replace(/\d+/g, '')
             this.personalData.region      = this.personalData.region.replace(/\d+/g, '')
             this.personalData.city        = this.personalData.city.replace(/\d+/g, '')
-        },
-        dateMask() {           
-            this.personalData.birthday      = this.personalData.birthday.replace(/[^0-9/]+/gi, '')
-            this.personalData.obtainingDate = this.personalData.obtainingDate.replace(/[^0-9/]+/gi, '')
-
-            const Date_1 = this.personalData.birthday.match(/\d{8}/g)
-            this.personalData.birthday = this.personalData.birthday.replace(/\d{8,}/g, Date_1)
-            let DateMask1 = ''
-            if (Date_1) {
-                const thedate = Date_1[0]
-                const day = thedate[0]+thedate[1]
-                const month = thedate[2]+thedate[3]
-                const year = thedate[4]+thedate[5] +thedate[6]+thedate[7]
-                DateMask1 = `${day}.${month}.${year}`
-            }
-            if (Date_1) this.personalData.birthday = DateMask1
-
-            const Date_2 = this.personalData.obtainingDate.match(/\d{8}/g)
-            this.personalData.obtainingDate = this.personalData.obtainingDate.replace(/\d{8,}/g, Date_2)
-            let DateMask2 = ''
-            if (Date_2) {
-                const thedate = Date_2[0]
-                const day = thedate[0]+thedate[1]
-                const month = thedate[2]+thedate[3]
-                const year = thedate[4]+thedate[5] +thedate[6]+thedate[7]
-                DateMask2 = `${day}.${month}.${year}`
-            }
-            if (Date_2) this.personalData.obtainingDate = DateMask2
-
-            
         },
         nonLetterMask() {
             this.personalData.index = this.personalData.index.replace(/\D/gi, '')
@@ -662,9 +631,9 @@ export default {
         justify-content: space-between
         align-items: center
         margin-bottom: 15px
-        input[type=text], input[type=tel]
+        input[type=text], input[type=tel], input[type=date]
             box-sizing: border-box
-            padding: 0 0 0 10px
+            padding: 0 10px 0 10px
             transition: .2s
             height: 35px
             width: 200px
@@ -672,6 +641,8 @@ export default {
             border-radius: 8px
             &:focus
                 border: 2px solid $main-color
+        input[type=date]
+            text-transform: uppercase
         select
             box-sizing: border-box
             padding: 0px 10px 0px 10px
